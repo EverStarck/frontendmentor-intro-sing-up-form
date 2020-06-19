@@ -13,10 +13,19 @@ const ButtonFrame = styled.section`
         border-radius: 10px;
         color: #fff;
         cursor: pointer;
+        /* transition: .5s ease-in-out; */
         box-shadow: ${({shadow}) => shadow};
         border-bottom: ${({colorbottom}) => colorbottom};
         &:active {
             transform: translateY(4px);
+        }
+        &:hover {
+            /* transition: .5s ease-in-out; */
+            filter: brightness(115%);
+        }
+        &:not(:hover) {
+            transition: .5s ease-in-out;
+            filter: none;
         }
     }
     .buttonText {
