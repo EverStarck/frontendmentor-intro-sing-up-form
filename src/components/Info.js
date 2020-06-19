@@ -16,6 +16,7 @@ const InfoFrame = styled.section`
         color: #fff;
         /* text-align: center; */
         font-size: 3rem;
+        font-weight: 700;
         margin: 0 0 0 0 10px;
 
     }

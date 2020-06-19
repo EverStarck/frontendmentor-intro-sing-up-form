@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const P = styled.p`
     position: relative;
     top: -20px;
-    color: #f97c78;
+    color: hsl(0, 100%, 74%);
     text-align: end;
     font-size: 11px;
 `;

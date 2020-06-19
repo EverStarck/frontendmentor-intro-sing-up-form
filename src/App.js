@@ -24,7 +24,7 @@ const Container = styled.div`
 
   /* Background */
   background-image: url(${(backgroundDesktop)});
-  background-color: #ff7878;
+  background-color: hsl(0, 100%, 74%);
 `;
 
 const Grid = styled.main`
@@ -56,7 +56,11 @@ function App() {
 
         <Info/>
 
-        <Button/>
+        <Button
+         text={[<span className="buttonText">Try it free 7 days</span>, " then $20/mo. thereafter"]}
+         shadow='0px 10px 0px 0px rgba(62, 60, 73,.3)'
+         colorbg='hsl(248, 32%, 49%)'
+        />
 
         <Form/>
 

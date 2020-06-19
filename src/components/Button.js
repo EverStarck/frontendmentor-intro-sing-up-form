@@ -8,18 +8,33 @@ const ButtonFrame = styled.section`
     button {
         width: 100%;
         padding: 20px;
-        background-color: hsl(228, 45%, 44%);
+        background-color: ${({colorbg}) => colorbg};
         border: none;
         border-radius: 10px;
         color: #fff;
-
+        cursor: pointer;
+        box-shadow: ${({shadow}) => shadow};
+        border-bottom: ${({colorbottom}) => colorbottom};
+        &:active {
+            transform: translateY(4px);
+        }
+    }
+    .buttonText {
+        font-weight: 600;
     }
 `;
 
-const Button = () => {
+const Button = ({text, shadow, colorbottom, colorbg}) => {
     return (
-        <ButtonFrame>
-            <button type="submit">Try it free 7 days then $20/mo. thereafter</button>
+        <ButtonFrame
+         text={text}
+         shadow={shadow}
+         colorbottom={colorbottom}
+         colorbg={colorbg}
+        >
+            <button
+             type="submit"
+            >{text}</button>
         </ButtonFrame>
     );
 }

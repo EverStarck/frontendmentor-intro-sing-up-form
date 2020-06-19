@@ -33,8 +33,9 @@ const FormFrame = styled.section`
                 font-weight: 600;
                 width: 100%;
                 box-sizing: border-box;
+                color: hsl(249, 10%, 26%);
                 &:focus {
-                    border: 1px solid #605b79;
+                    border: 1px solid hsl(249, 10%, 26%);
                 }
             }
         }
@@ -45,20 +46,20 @@ const Form = () => {
     return (
         <FormFrame>
             <form>
-            <div class="input-container">
+            <div className="input-container">
                 <input type="text" name="firstName" placeholder="First Name"/>
                 <img src={errorIcon} alt="Icon of red error" srcSet=""/>
             </div>
             <Error mesage='First Name cannot be empty'/>
-            <div class="input-container">
+            <div className="input-container">
                 <input type="text" name="lastName" placeholder="Last Name"/>
                 <img src={errorIcon} alt="Icon of red error" srcSet=""/>
             </div>
-            <div class="input-container">
+            <div className="input-container">
             <input type="email" name="email" placeholder="Email Address"/>
                 <img src={errorIcon} alt="Icon of red error" srcSet=""/>
             </div>
-            <div class="input-container">
+            <div className="input-container">
             <input type="password" name="password" placeholder="Password"/>
                 <img src={errorIcon} alt="Icon of red error" srcSet=""/>
             </div>
@@ -72,7 +73,11 @@ const Form = () => {
 
             </form>
 
-            <Button/>
+            <Button
+             text='CLAIM YOUR FREE TRIAL'
+             colorbottom='3px solid rgba(0, 0, 0, .3)'
+             colorbg='hsl(154, 59%, 51%)'
+            />
 
         </FormFrame>
     );
