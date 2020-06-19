@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 
-import errorIcon from '../assets/images/icon-error.svg';
+// import errorIcon from '../assets/images/icon-error.svg';
 import Error from './Error';
 
 
@@ -11,7 +11,6 @@ const FormFrame = styled.section`
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-
     form {
         width: 100%;
         .input-container {
@@ -29,12 +28,14 @@ const FormFrame = styled.section`
             input {
                 padding: 15px;
                 margin-bottom: 20px;
-                border: 1px solid #dedede;
                 border-radius: 10px;
                 font-weight: 600;
                 width: 100%;
                 box-sizing: border-box;
                 color: hsl(249, 10%, 26%);
+
+                border: ${p => p.error ? '2px solid hsl(0, 100%, 74%);' : '1px solid #dedede;'};
+
                 &:focus {
                     border: 1px solid hsl(249, 10%, 26%);
                 }
@@ -44,7 +45,6 @@ const FormFrame = styled.section`
 `;
 
 const Form = () => {
-
     // State of all inputs
     const [data, setData] = useState({
         firstName: '',
@@ -97,23 +97,25 @@ const Form = () => {
     }
 
     return (
-        <FormFrame>
+        <FormFrame
+        error={error}
+        >
             <form
              onSubmit={handleSubmit}
             >
                 <div className="input-container">
-                    <input type="text" name="firstName" placeholder="First Name" value={firstName} onChange={refreshData} />
+                    <input type="text" name="firstName" placeholder="First Name" value={firstName} onChange={refreshData}/>
                     {/* <img src={errorIcon} alt="Icon of red error" srcSet="" /> */}
                 </div>
 
-                {error ?  <Error mesage='First Name cannot be empty' /> : null}
+                {error ? <Error mesage='First Name cannot be empty' /> : null}
 
                 <div className="input-container">
                     <input type="text" name="lastName" placeholder="Last Name" value={lastName} onChange={refreshData} />
                     {/* <img src={errorIcon} alt="Icon of red error" srcSet="" /> */}
                 </div>
 
-                {error ?  <Error mesage='Last Name cannot be empty' /> : null}
+                {error ? <Error mesage='Last Name cannot be empty' /> : null}
 
                 <div className="input-container">
                     <input type="text" name="email" placeholder="Email Address" value={email} onChange={refreshData}/>
