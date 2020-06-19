@@ -7,11 +7,11 @@ const Img = styled.img`
 
     position: absolute;
     right: 11%;
-    transform: translateY(-250%);
-    /* display: none; */
-    /* transform: translate(60%); */
-    /* width: 25px; */
-    /* height: 25px; */
+    transform: translateY(60%);
+    /* Mobile responsive */
+    @media screen and (max-width: 623px) {
+        right: 15%;
+    }
 `;
 
 const P = styled.p`

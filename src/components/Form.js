@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 
-// import errorIcon from '../assets/images/icon-error.svg';
 import Error from './Error';
+import Input from './Input';
 
 
 const FormFrame = styled.section`
@@ -13,34 +13,6 @@ const FormFrame = styled.section`
     border-radius: 10px;
     form {
         width: 100%;
-        .input-container {
-            display: -ms-flexbox; /* IE10 */
-            display: flex;
-            /* img {
-                position: absolute;
-                right: 11%;
-                transform: translateY(60%);
-                display: none;
-                /* transform: translate(60%); */
-                /* width: 25px; */
-                /* height: 25px; }*/
-
-            input {
-                padding: 15px;
-                margin-bottom: 20px;
-                border-radius: 10px;
-                font-weight: 600;
-                width: 100%;
-                box-sizing: border-box;
-                color: hsl(249, 10%, 26%);
-
-                border: ${p => p.error ? '2px solid hsl(0, 100%, 74%);' : '1px solid #dedede;'};
-
-                &:focus {
-                    border: 1px solid hsl(249, 10%, 26%);
-                }
-            }
-        }
     }
     .terms {
         font-size: .9rem;
@@ -108,37 +80,44 @@ const Form = () => {
 
     return (
         <FormFrame
-        error={error}
         >
             <form
              onSubmit={handleSubmit}
             >
-                <div className="input-container">
-                    <input type="text" name="firstName" placeholder="First Name" value={firstName} onChange={refreshData}/>
-                    {/* <img src={errorIcon} alt="Icon of red error" srcSet="" /> */}
-                </div>
-
+                <Input
+                 error={error}
+                 value={firstName}
+                 name="firstName"
+                 onChange={refreshData}
+                 placeholder="First Name"
+                 type="text"/>
                 {error ? <Error mesage='First Name cannot be empty' /> : null}
 
-                <div className="input-container">
-                    <input type="text" name="lastName" placeholder="Last Name" value={lastName} onChange={refreshData} />
-                    {/* <img src={errorIcon} alt="Icon of red error" srcSet="" /> */}
-                </div>
-
+                <Input
+                error={error}
+                 value={lastName}
+                 onChange={refreshData}
+                 placeholder="Last Name"
+                 name="lastName"
+                 type="text"/>
                 {error ? <Error mesage='Last Name cannot be empty' /> : null}
 
-                <div className="input-container">
-                    <input type="text" name="email" placeholder="Email Address" value={email} onChange={refreshData}/>
-                    {/* <img src={errorIcon} alt="Icon of red error" srcSet="" /> */}
-                </div>
-
+                <Input
+                 error={error}
+                 value={email}
+                 onChange={refreshData}
+                 placeholder="Email Address"
+                 name="email"
+                 type="text"/>
                 {error ?  <Error mesage='Looks like this is not an email' /> : null}
 
-                <div className="input-container">
-                    <input type="password" name="password" placeholder="Password" value={password} onChange={refreshData}/>
-                    {/* <img src={errorIcon} alt="Icon of red error" srcSet="" /> */}
-                </div>
-
+                <Input
+                 error={error}
+                 value={password}
+                 onChange={refreshData}
+                 placeholder="Password"
+                 name="password"
+                 type="password"/>
                 {error ?  <Error mesage='Password min 6 characteres' /> : null}
 
                 <Button
