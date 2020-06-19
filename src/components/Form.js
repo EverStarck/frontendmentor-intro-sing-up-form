@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 
@@ -17,14 +17,15 @@ const FormFrame = styled.section`
         .input-container {
             display: -ms-flexbox; /* IE10 */
             display: flex;
-            img {
+            /* img {
                 position: absolute;
                 right: 11%;
                 transform: translateY(60%);
+                display: none;
                 /* transform: translate(60%); */
                 /* width: 25px; */
-                /* height: 25px; */
-            }
+                /* height: 25px; }*/
+
             input {
                 padding: 15px;
                 margin-bottom: 20px;
@@ -43,44 +44,109 @@ const FormFrame = styled.section`
 `;
 
 const Form = () => {
+
+    // State of all inputs
+    const [data, setData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+
+    });
+
+    const [error, setError] = useState(false);
+
+    // Get all inputs
+    const {firstName, lastName, email, password} = data;
+
+    // Refresh form
+    const refreshData = e => {
+        setData({
+            ...data,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    // On submit
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // Verify
+        // No empty filds
+        if (firstName.trim() === '' || lastName.trim() === '' || email.trim() === '' || password.trim() === '') {
+            setError(true);
+            return;
+        }
+        setError(false);
+
+        // Verify email
+        const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+        if(!emailRegex.test(email)) {
+            setError(true);
+            return;
+        }
+        setError(false);
+
+        // Passowrd min 6 lengh
+        if(password.length < 6) {
+            setError(true);
+            return;
+        }
+        setError(false);
+        alert('hola')
+    }
+
     return (
         <FormFrame>
-            <form>
-            <div className="input-container">
-                <input type="text" name="firstName" placeholder="First Name"/>
-                <img src={errorIcon} alt="Icon of red error" srcSet=""/>
-            </div>
-            <Error mesage='First Name cannot be empty'/>
-            <div className="input-container">
-                <input type="text" name="lastName" placeholder="Last Name"/>
-                <img src={errorIcon} alt="Icon of red error" srcSet=""/>
-            </div>
-            <div className="input-container">
-            <input type="email" name="email" placeholder="Email Address"/>
-                <img src={errorIcon} alt="Icon of red error" srcSet=""/>
-            </div>
-            <div className="input-container">
-            <input type="password" name="password" placeholder="Password"/>
-                <img src={errorIcon} alt="Icon of red error" srcSet=""/>
-            </div>
+            <form
+             onSubmit={handleSubmit}
+            >
+                <div className="input-container">
+                    <input type="text" name="firstName" placeholder="First Name" value={firstName} onChange={refreshData} />
+                    {/* <img src={errorIcon} alt="Icon of red error" srcSet="" /> */}
+                </div>
 
+                {error ?  <Error mesage='First Name cannot be empty' /> : null}
 
-                {/* <input type="text" name="firstName" placeholder="First Name"/>
-                <input type="text" name="lastName" placeholder="Last Name"/>
-                <input type="email" name="email" placeholder="Email Address"/>
-                <input type="password" name="password" placeholder="Password"/> */}
+                <div className="input-container">
+                    <input type="text" name="lastName" placeholder="Last Name" value={lastName} onChange={refreshData} />
+                    {/* <img src={errorIcon} alt="Icon of red error" srcSet="" /> */}
+                </div>
 
+                {error ?  <Error mesage='Last Name cannot be empty' /> : null}
+
+                <div className="input-container">
+                    <input type="text" name="email" placeholder="Email Address" value={email} onChange={refreshData}/>
+                    {/* <img src={errorIcon} alt="Icon of red error" srcSet="" /> */}
+                </div>
+
+                {error ?  <Error mesage='Looks like this is not an email' /> : null}
+
+                <div className="input-container">
+                    <input type="password" name="password" placeholder="Password" value={password} onChange={refreshData}/>
+                    {/* <img src={errorIcon} alt="Icon of red error" srcSet="" /> */}
+                </div>
+
+                {error ?  <Error mesage='Password min 6 characteres' /> : null}
+
+                <Button
+                text='CLAIM YOUR FREE TRIAL'
+                colorbottom='3px solid rgba(0, 0, 0, .3)'
+                colorbg='hsl(154, 59%, 51%)'
+                />
 
             </form>
-
-            <Button
-             text='CLAIM YOUR FREE TRIAL'
-             colorbottom='3px solid rgba(0, 0, 0, .3)'
-             colorbg='hsl(154, 59%, 51%)'
-            />
-
         </FormFrame>
     );
 }
 
 export default Form;
+
+
+
+
+{/* <input type="text" name="firstName" placeholder="First Name"/>
+<input type="text" name="lastName" placeholder="Last Name"/>
+<input type="email" name="email" placeholder="Email Address"/>
+<input type="password" name="password" placeholder="Password"/> */}
+
