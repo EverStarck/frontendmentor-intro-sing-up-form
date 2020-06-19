@@ -42,6 +42,16 @@ const FormFrame = styled.section`
             }
         }
     }
+    .terms {
+        font-size: .9rem;
+        color: hsl(246, 25%, 77%);
+        text-align: center;
+        a {
+            color: hsl(0, 100%, 74%);
+            font-weight: 700;
+            text-decoration: none;
+        }
+    }
 `;
 
 const Form = () => {
@@ -138,6 +148,9 @@ const Form = () => {
                 />
 
             </form>
+
+            <p className="terms">By clicking the button, you are agreeing to our <a href="!#" target="_blank" rel="noopener noreferrer">Terms and Services</a> </p>
+
         </FormFrame>
     );
 }

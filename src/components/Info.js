@@ -25,12 +25,19 @@ const InfoFrame = styled.section`
         margin: 0;
         line-height: 1.5;
     }
+
+    @media screen and (max-width: 375px) {
+        text-align: center;
+        h1 {
+            font-size: 2rem;
+        }
+    }
 `;
 
 const Info = () => {
     return (
         <InfoFrame>
-            <h1>Learn to code by <br/> watching others</h1>
+            <h1>Learn to code by watching others</h1>
             <p>See how experienced developers solve problems in real-time. Watching scripted tutorials is great,but understanding how developers think is invaluable.</p>
         </InfoFrame>
     );
