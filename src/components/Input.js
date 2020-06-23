@@ -9,9 +9,7 @@ const IputStyled = styled.input`
     width: 100%;
     box-sizing: border-box;
     color: hsl(249, 10%, 26%);
-
     border: ${p => p.error ? '2px solid hsl(0, 100%, 74%);' : '1px solid #dedede;'};
-
     &:focus {
         border: 1px solid hsl(249, 10%, 26%);
     }

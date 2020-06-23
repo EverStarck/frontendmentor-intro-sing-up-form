@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Button from './Button';
+import {useForm} from 'react-hook-form';
 
+import Button from './Button';
 import Error from './Error';
 import Input from './Input';
 
@@ -26,99 +27,58 @@ const FormFrame = styled.section`
     }
 `;
 
+const IputStyled = styled.input`
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    width: 100%;
+    box-sizing: border-box;
+    color: hsl(249, 10%, 26%);
+    border: ${p => p.errors ? '2px solid hsl(0, 100%, 74%);' : '1px solid #dedede;'};
+    &:focus {
+        border: 1px solid hsl(249, 10%, 26%);
+    }
+`;
+
 const Form = () => {
-    // State of all inputs
-    const [data, setData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
+    const {register, handleSubmit, errors} = useForm();
 
-    });
-
-    const [error, setError] = useState(false);
-
-    // Get all inputs
-    const {firstName, lastName, email, password} = data;
-
-    // Refresh form
-    const refreshData = e => {
-        setData({
-            ...data,
-            [e.target.name] : e.target.value
-        })
-    }
-
-    // On submit
-    const handleSubmit = e => {
-        e.preventDefault();
-
-        // Verify
-        // No empty filds
-        if (firstName.trim() === '' || lastName.trim() === '' || email.trim() === '' || password.trim() === '') {
-            setError(true);
-            return;
-        }
-        setError(false);
-
-        // Verify email
-        const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-        if(!emailRegex.test(email)) {
-            setError(true);
-            return;
-        }
-        setError(false);
-
-        // Passowrd min 6 lengh
-        if(password.length < 6) {
-            setError(true);
-            return;
-        }
-        setError(false);
-        alert('hola')
-    }
+    const onSubmit = data => console.log(data);
 
     return (
         <FormFrame
         >
             <form
-             onSubmit={handleSubmit}
+             onSubmit={handleSubmit(onSubmit)}
             >
-                <Input
-                 error={error}
-                 value={firstName}
+                <IputStyled
+                 ref={register({required: true, minLength: 1})}
                  name="firstName"
-                 onChange={refreshData}
                  placeholder="First Name"
                  type="text"/>
-                {error ? <Error mesage='First Name cannot be empty' /> : null}
+                {errors.firstName && <Error mesage='First Name cannot be empty' />}
 
-                <Input
-                error={error}
-                 value={lastName}
-                 onChange={refreshData}
+                <IputStyled
+                 ref={register({required: true, minLength: 1})}
                  placeholder="Last Name"
                  name="lastName"
                  type="text"/>
-                {error ? <Error mesage='Last Name cannot be empty' /> : null}
+                {errors.lastName && <Error mesage='Last Name cannot be empty' />}
 
-                <Input
-                 error={error}
-                 value={email}
-                 onChange={refreshData}
+                <IputStyled
+                 ref={register({required: true, pattern: /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i})}
                  placeholder="Email Address"
                  name="email"
                  type="text"/>
-                {error ?  <Error mesage='Looks like this is not an email' /> : null}
+                {errors.email && <Error mesage='Looks like this is not an email' />}
 
-                <Input
-                 error={error}
-                 value={password}
-                 onChange={refreshData}
+                <IputStyled
+                 ref={register({required: true, minLength: 6})}
                  placeholder="Password"
                  name="password"
                  type="password"/>
-                {error ?  <Error mesage='Password min 6 characteres' /> : null}
+                {errors.password && <Error mesage='Password min 6 characteres' />}
 
                 <Button
                 text='CLAIM YOUR FREE TRIAL'
