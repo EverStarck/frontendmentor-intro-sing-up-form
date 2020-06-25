@@ -4,7 +4,7 @@ import {useForm} from 'react-hook-form';
 
 import Button from './Button';
 import Error from './Error';
-import Input from './Input';
+// import Input from './Input';
 
 
 const FormFrame = styled.section`
@@ -35,16 +35,18 @@ const IputStyled = styled.input`
     width: 100%;
     box-sizing: border-box;
     color: hsl(249, 10%, 26%);
-    border: ${p => p.errors ? '2px solid hsl(0, 100%, 74%);' : '1px solid #dedede;'};
+    border: ${p => p.testError ? '2px solid hsl(0, 100%, 74%);' : '1px solid #dedede;'};
     &:focus {
         border: 1px solid hsl(249, 10%, 26%);
     }
 `;
 
 const Form = () => {
-    const {register, handleSubmit, errors} = useForm();
+    const {register, handleSubmit, errors } = useForm();
 
     const onSubmit = data => console.log(data);
+
+    // const [testError, setTestError] = useState(false);
 
     return (
         <FormFrame
@@ -53,37 +55,42 @@ const Form = () => {
              onSubmit={handleSubmit(onSubmit)}
             >
                 <IputStyled
+                //  testError={testError}
                  ref={register({required: true, minLength: 1})}
                  name="firstName"
                  placeholder="First Name"
                  type="text"/>
-                {errors.firstName && <Error mesage='First Name cannot be empty' />}
+                {errors.firstName ? <Error mesage='First Name cannot be empty'/> :null}
 
                 <IputStyled
+                //  testError={testError}
                  ref={register({required: true, minLength: 1})}
                  placeholder="Last Name"
                  name="lastName"
                  type="text"/>
-                {errors.lastName && <Error mesage='Last Name cannot be empty' />}
+                {errors.lastName ? <Error mesage='Last Name cannot be empty' /> :null}
 
                 <IputStyled
+                //  testError={testError}
                  ref={register({required: true, pattern: /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i})}
                  placeholder="Email Address"
                  name="email"
                  type="text"/>
                 {errors.email && <Error mesage='Looks like this is not an email' />}
 
+
                 <IputStyled
+                //  testError={testError}
                  ref={register({required: true, minLength: 6})}
                  placeholder="Password"
                  name="password"
                  type="password"/>
-                {errors.password && <Error mesage='Password min 6 characteres' />}
+                {errors.password && <Error mesage='Password min 6 characteres'/>}
 
                 <Button
-                text='CLAIM YOUR FREE TRIAL'
-                colorbottom='3px solid rgba(0, 0, 0, .3)'
-                colorbg='hsl(154, 59%, 51%)'
+                 text='CLAIM YOUR FREE TRIAL'
+                 colorbottom='3px solid rgba(0, 0, 0, .3)'
+                 colorbg='hsl(154, 59%, 51%)'
                 />
 
             </form>
@@ -96,11 +103,4 @@ const Form = () => {
 
 export default Form;
 
-
-
-
-{/* <input type="text" name="firstName" placeholder="First Name"/>
-<input type="text" name="lastName" placeholder="Last Name"/>
-<input type="email" name="email" placeholder="Email Address"/>
-<input type="password" name="password" placeholder="Password"/> */}
 

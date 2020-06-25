@@ -25,8 +25,8 @@ const P = styled.p`
 const Error = ({mesage}) => {
     return (
         <>
-        <Img src={errorIcon} alt="Icon of red error" srcSet="" />
-        <P>{mesage}</P>
+            <Img src={errorIcon} alt="Icon of red error" srcSet="" />
+            <P>{mesage}</P>
         </>
     );
 }
