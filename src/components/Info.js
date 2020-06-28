@@ -28,6 +28,7 @@ const InfoFrame = styled.section`
 
     @media screen and (max-width: 375px) {
         text-align: center;
+        margin-bottom: 20px;
         h1 {
             font-size: 2rem;
         }

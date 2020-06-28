@@ -56,6 +56,7 @@ const Grid = styled.main`
                          "button"
                          "form";
   }
+  
   /* MOBILE RESPONSIVE */
   @media screen and (max-width: 375px) {
     /* Background */

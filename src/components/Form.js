@@ -27,7 +27,7 @@ const FormFrame = styled.section`
     }
     /* MOBILE RESPONSIVE */
   @media screen and (max-width: 375px) {
-    margin-bottom: 20px;
+    margin: 20px 0 20px 0;
   }
 `;
 
