@@ -5,17 +5,25 @@ import Button from './components/Button';
 import Form from './components/Form';
 
 import backgroundDesktop from './assets/images/bg-intro-desktop.png';
+import backgroundMobile from './assets/images/bg-intro-mobile.png';
 
 const Container = styled.div`
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
   font-size: 16px;
 
+  @media screen and (min-width: 760px) {
+    max-height: 100vh;
+    min-height: 100vh;
+    max-width: 100vw;
+    min-width: 100vw;
+  }
+
   /* Size */
-  max-height: 100vh;
+  /* max-height: 100vh;
   min-height: 100vh;
   max-width: 100vw;
-  min-width: 100vw;
+  min-width: 100vw; */
 
   /* Align */
   display: flex;
@@ -39,13 +47,20 @@ const Grid = styled.main`
                        "info form";
 
 
-  /* MOBILE RESPONSIVE */
+
+  /* Tablet RESPONSIVE */
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-auto-rows: auto auto auto;
     grid-template-areas: "info"
                          "button"
                          "form";
+  }
+  /* MOBILE RESPONSIVE */
+  @media screen and (max-width: 375px) {
+    /* Background */
+    background-image: url(${(backgroundMobile)});
+    background-color: hsl(0, 100%, 74%);
   }
 `;
 

@@ -25,6 +25,10 @@ const FormFrame = styled.section`
             text-decoration: none;
         }
     }
+    /* MOBILE RESPONSIVE */
+  @media screen and (max-width: 375px) {
+    margin-bottom: 20px;
+  }
 `;
 
 const IputStyled = styled.input`
