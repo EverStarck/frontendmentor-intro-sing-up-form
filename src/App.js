@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Info from "./components/Info";
 import Button from "./components/Button";
